@@ -24,3 +24,8 @@ What seems to cause the crash, is the line 73
 But, when set the line 39 to false, which uses the
 Thread recursive, the app crashed at this line 66 -> Thread.Sleep()
 and only when line 73 is active.
+
+The error occurs in Visual Studio Version 17.3.0 Preview 2.0, 
+with Version 17.3.0 Preview 1.1 it was working fine.
+
+
