@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnesieMobile.View.SettingsPage"
+             xmlns:model="clr-namespace:OnesieMobile.Model"
+             xmlns:viewmodel="clr-namespace:OnesieMobile.ViewModel"
+             x:DataType="viewmodel:SettingsViewModel"
+             Title="Settings">
+    <ScrollView>
+        <VerticalStackLayout Margin="10,20,20,0" Spacing="8">
+            
+            <!-- ################ VERSION ################ -->
+            <Label Text="V 0.0.19" HorizontalOptions="End" />
+            <!-- ######################################### -->
+
+            <Label Text="ID" FontAttributes="Bold"/>
+            <Label Text="{Binding DeviceInfoEntity.ID}"/>
+            <Label Text="Device Name" FontAttributes="Bold"/>
+            <Entry Text="{Binding DeviceInfoEntity.Name}" />
+
+            <Label Text="UTC Offset" FontAttributes="Bold"/>
+            <Entry Text="{Binding UtcOffset.Value}" />
+            
+            <VerticalStackLayout Padding="10" Spacing="10">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="*">
+                    <Button Command="{Binding SaveSettingsCommand}" Grid.Column="0"
+                            Padding="0" WidthRequest="100" HeightRequest="30" Text="Save" BackgroundColor="Green"/>
+                    <Button Command="{Binding DeleteOnesieStorageCommand}" Grid.Column="1"
+                            Padding="0" WidthRequest="100" HeightRequest="30" Text="Reset" BackgroundColor="Red"/>
+                </Grid>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

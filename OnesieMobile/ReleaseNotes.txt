@@ -1,0 +1,7 @@
+﻿V 0.0.17
+--------
+
+Known issue: Local DateTime not working
+https://github.com/dotnet/maui/issues/7903
+
+ 

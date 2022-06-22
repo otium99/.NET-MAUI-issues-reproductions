@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="OnesieMobile.View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:OnesieMobile.Model"
+    xmlns:viewmodel="clr-namespace:OnesieMobile.ViewModel"
+    x:DataType="viewmodel:MainPageViewModel"
+    Title="{Binding Title}">
+    <Grid x:Name="MainLayout"
+        ColumnDefinitions="*"
+        RowDefinitions="60,50,50,*"
+        RowSpacing="0">
+        <StackLayout  Grid.Row="0">
+            <Label HorizontalOptions="End" Margin="10,0,10,0"  
+               Text="{Binding CurrentDateTime}"/>
+        </StackLayout>
+
+        <CollectionView x:Name="ActivityCollection"
+            Grid.Row="3"    ItemsUpdatingScrollMode="KeepItemsInView"
+                ItemsSource="{Binding ActivityEntities}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate    ItemsUpdatingScrollMode="KeepItemsInView">
+                <DataTemplate x:DataType="model:ActivityEntity">
+                    
+                    <!--Cards-->
+                    <Grid Padding="10,0,10,10" HeightRequest="65">
+                        
+                        <!--Style="{StaticResource CardView}"-->
+                        <Frame Margin="0" Padding="8,5,8,0" BackgroundColor="#E1F6FF">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding Source={x:Reference ActivityCollection},
+                                                Path=BindingContext.OpenActivityCommand}" />
+                                <!--<TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>-->
+                            </Frame.GestureRecognizers>
+                            <!--CardItem-->
+                            <Grid VerticalOptions="Center" Padding="0" Margin="0" ColumnSpacing="5"  ColumnDefinitions="*,30,30,30" RowDefinitions="25,25">
+                                
+                                <!--Row 0-->
+                                <StackLayout Margin="0" Padding="0" Grid.Column="0" Grid.Row="0">
+                                    <Label Margin="0" Padding="0" Text="{Binding Title}"  />
+                                </StackLayout>
+
+                                <!--PinIcon-->
+                                <Image VerticalOptions="Center" Margin="0,0,10,0"
+                                       WidthRequest="25" HeightRequest="25" Grid.Column="1" Grid.RowSpan="2">
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Style.Triggers>
+                                                <DataTrigger TargetType="Image" Binding="{Binding IsPinned}" Value="true">
+                                                    <Setter Property="Source" Value="Resources/Icons/TitleIcon.png"/>
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Image" Binding="{Binding IsPinned}" Value="false">
+                                                    <Setter Property="Source" Value="Resources/Icons/PinIcon.png"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding ActivityID}" Command="{Binding Source={x:Reference ActivityCollection},
+                                                Path=BindingContext.PinActivityCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                                <!--TrashIcon-->
+                                <Image Source="Resources/Icons/TrashIcon.png" VerticalOptions="Center"
+                                       WidthRequest="25" HeightRequest="25" Grid.Column="2" Grid.RowSpan="2">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding ActivityID}" Command="{Binding Source={x:Reference ActivityCollection},
+                                                Path=BindingContext.DeleteActivityCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                                <!--CheckIcon-->
+                                <Image WidthRequest="23" HeightRequest="23" VerticalOptions="Center" Grid.RowSpan="2" Grid.Column="3"
+                                           Source="Resources/Icons/CheckIcon.png" IsVisible="{Binding IsSynchronized}"/>
+                                
+                                <!--Row 1-->
+                                <StackLayout Padding="0" Grid.Column="0" Grid.Row="1">
+                                <Label Text="{Binding ModifiedAt,StringFormat='{}{0:d. MMM yyyy HH:mm:sss}'}"  />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Grid.RowSpan="3"
+                               Grid.ColumnSpan="2"/>
+
+    </Grid>
+</ContentPage>
