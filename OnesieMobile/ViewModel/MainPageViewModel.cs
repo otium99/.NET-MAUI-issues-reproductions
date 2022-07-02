@@ -22,7 +22,7 @@ namespace OnesieMobile.ViewModel
         public ObservableCollection<ActivityEntity> ActivityEntities { get; } = new();
 
         [ObservableProperty]
-        public DateTime currentDateTime;
+        public DateTime lastActualized;
 
         OnesieService onesieService;
 
@@ -70,7 +70,7 @@ namespace OnesieMobile.ViewModel
         private bool ExecuteBackgroundProcess()
         {
             // This line crashes the app. Comment this line out and the app runs fine
-            CurrentDateTime = DateTime.Now;
+            LastActualized = DateTime.Now;
 
             return true;
         }
