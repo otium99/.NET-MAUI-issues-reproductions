@@ -1,5 +1,4 @@
 ﻿using Foundation;
-using SQLitePCL;
 
 namespace OnesieMobile;
 
@@ -9,7 +8,6 @@ public class AppDelegate : MauiUIApplicationDelegate
     //protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     protected override MauiApp CreateMauiApp()
     {
-        raw.SetProvider(new SQLite3Provider_sqlite3());
         return MauiProgram.CreateMauiApp();
     }
 }
