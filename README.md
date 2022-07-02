@@ -1,8 +1,10 @@
 # .NET MAUI Issue 8168 Error Reproduction
 
-This solution reproduces this error: https://github.com/dotnet/maui/issues/8168
+This solution reproduces these errors: 
+https://github.com/dotnet/maui/issues/8168
+https://github.com/dotnet/maui/issues/8497
 
-To reproduce follow these steps:
+To reproduce https://github.com/dotnet/maui/issues/8168 follow these steps:
 
 - Download the project
 - Open OnesieMobile.sln
