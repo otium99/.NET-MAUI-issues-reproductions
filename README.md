@@ -1,7 +1,7 @@
 # .NET MAUI Issue 8168 Error Reproduction
 
-This solution reproduces these errors: 
-https://github.com/dotnet/maui/issues/8168
+This solution reproduces these errors: <br>
+https://github.com/dotnet/maui/issues/8168<br>
 https://github.com/dotnet/maui/issues/8497
 
 To reproduce https://github.com/dotnet/maui/issues/8168 follow these steps:
