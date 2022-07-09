@@ -1,6 +1,8 @@
-# .NET MAUI Issue 8168 Error Reproduction
+# .NET MAUI Error Reproductions
 
-This solution reproduces these errors: <br>
+This repository is designed to reproduce issues in .NET MAUI for investigation and resolving.
+
+The following issues are included so far: <br>
 https://github.com/dotnet/maui/issues/8168<br>
 https://github.com/dotnet/maui/issues/8497
 
